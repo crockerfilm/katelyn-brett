@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Katelyn & Brett Films</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Karla:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a quiet screening room. One centered column; two film "reels" laid side by side, stacking on phones. */
+:root {
+  --bg: #eceee8;
+  --surface: #f7f8f4;
+  --ink: #1d2721;
+  --muted: #5c675f;
+  --line: #cfd4cb;
+  --brass: #8a6a33;
+  --brass-soft: #e6dcc8;
+  --on-brass: #fbf8f1;
+  --danger: #9a3b2f;
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Karla", "Helvetica Neue", Arial, sans-serif;
+  --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121814; --surface: #1a221d; --ink: #e5e8e1; --muted: #9aa69d;
+    --line: #2d3831; --brass: #cfac6e; --brass-soft: #3a3324; --on-brass: #17130b;
+    --danger: #e08a7c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121814; --surface: #1a221d; --ink: #e5e8e1; --muted: #9aa69d;
+  --line: #2d3831; --brass: #cfac6e; --brass-soft: #3a3324; --on-brass: #17130b;
+  --danger: #e08a7c; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: clamp(40px, 8vw, 88px);
+}
+.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: clamp(40px, 6vw, 64px); }
+
+.eyebrow {
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+}
+header { display: grid; gap: 14px; justify-items: center; text-align: center; }
+h1 {
+  font-family: var(--display); font-weight: 400; margin: 0;
+  font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.02; letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+h1 .amp { font-style: italic; color: var(--brass); font-size: 0.8em; padding-inline: 0.08em; }
+.rule { width: 56px; height: 1px; background: var(--brass); border: 0; margin: 4px 0 0; }
+
+/* Lock screen */
+.gate { max-width: 380px; width: 100%; margin: 0 auto; display: grid; gap: 14px; }
+.gate p { margin: 0; color: var(--muted); text-align: center; }
+.gate label { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.field { display: flex; gap: 8px; }
+.field input {
+  flex: 1; min-width: 0; font: inherit; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px;
+}
+.field input:focus-visible { outline: 2px solid var(--brass); outline-offset: 1px; border-color: transparent; }
+.err { color: var(--danger); font-size: 0.9rem; min-height: 1.4em; text-align: center; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: 600 0.95rem/1 var(--body); text-decoration: none; cursor: pointer;
+  padding: 13px 18px; border-radius: 4px; border: 1px solid var(--brass);
+  background: var(--brass); color: var(--on-brass); white-space: nowrap;
+}
+.btn:hover { filter: brightness(1.06); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--brass); filter: none; }
+.btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.btn[disabled] { opacity: 0.6; cursor: progress; }
+.btn .meta { font: 400 0.78rem/1 var(--mono); opacity: 0.8; }
+
+/* Reels */
+.reels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 32px); }
+@media (max-width: 720px) { .reels { grid-template-columns: 1fr; } }
+.reel {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  display: grid; grid-template-rows: auto 1fr; overflow: hidden; min-width: 0;
+}
+.frame {
+  position: relative; aspect-ratio: 16 / 9; max-width: 100%;
+  background: var(--ink); color: var(--bg);
+  display: grid; place-items: center; text-decoration: none; overflow: hidden;
+}
+/* sprocket holes along the top and bottom of each frame */
+.frame::before, .frame::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 10px;
+  background: radial-gradient(circle, var(--bg) 0 2.5px, transparent 3px) 0 50% / 18px 10px repeat-x;
+  opacity: 0.35;
+}
+.frame::before { top: 6px; } .frame::after { bottom: 6px; }
+.poster {
+  all: unset; box-sizing: border-box; position: absolute; inset: 0; cursor: pointer;
+  display: grid; place-items: center; color: inherit;
+}
+.poster:focus-visible { outline: 2px solid var(--brass); outline-offset: -4px; }
+.frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; z-index: 1; }
+.frame .slate { display: grid; gap: 6px; justify-items: center; text-align: center; padding: 0 16px; }
+.frame .reelno { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
+.frame .name { font-family: var(--display); font-style: italic; font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1.1; }
+.frame .play {
+  margin-top: 8px; width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid currentColor; display: grid; place-items: center; opacity: 0.85;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.poster:hover .play, .poster:focus-visible .play { transform: scale(1.08); opacity: 1; }
+.body { padding: clamp(18px, 3vw, 26px); display: grid; gap: 14px; align-content: start; }
+.body h2 { font-family: var(--display); font-weight: 500; font-size: 1.5rem; margin: 0; line-height: 1.2; }
+.body p { margin: 0; color: var(--muted); max-width: 60ch; }
+.tag {
+  justify-self: start; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 4px 8px; border-radius: 3px;
+  background: var(--brass-soft); color: var(--ink);
+}
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.specs { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.help {
+  border-top: 1px solid var(--line); padding-top: 28px;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;
+}
+@media (max-width: 720px) { .help { grid-template-columns: 1fr; } }
+.help h3 { font-family: var(--mono); font-weight: 500; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 6px; color: var(--brass); }
+.help p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: grid; gap: 10px; justify-items: center; }
+.notice { margin: 0 0 calc(-1 * clamp(16px, 3vw, 32px)); text-align: center; color: var(--muted); font-size: 0.95rem; }
+.notice strong { color: var(--ink); font-weight: 600; }
+.linkbtn { background: none; border: 0; color: var(--muted); font: inherit; font-size: 0.82rem; text-decoration: underline; cursor: pointer; padding: 4px; }
+.linkbtn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Wedding films · October 2026</span>
+    <h1>Katelyn <span class="amp">&amp;</span> Brett</h1>
+    <hr class="rule">
+  </header>
+
+  <form class="gate" id="gate" autocomplete="off">
+    <p>Enter the password to watch and download your films.</p>
+    <label for="pw">Password</label>
+    <div class="field">
+      <input id="pw" name="pw" type="password" autocapitalize="none" spellcheck="false" required>
+      <button class="btn" id="unlock" type="submit">Open</button>
+    </div>
+    <div class="err" id="err" role="alert"></div>
+  </form>
+
+  <main id="films" hidden>
+    <div style="display:grid; gap: clamp(40px, 6vw, 64px);">
+      <p class="notice">This page is up until <strong>January&nbsp;14,&nbsp;2027</strong>. Download both films to keep them.</p>
+      <section class="reels" aria-label="Your films">
+        <article class="reel">
+          <div class="frame" id="c-frame"><button type="button" class="poster" aria-label="Play The Ceremony">
+            <div class="slate">
+              <span class="reelno">Reel 01</span>
+              <span class="name">The Ceremony</span>
+              <span class="play" aria-hidden="true"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M1 1l12 7-12 7z" fill="currentColor"/></svg></span>
+            </div>
+          </button></div>
+          <div class="body">
+            <span class="tag">Full edit</span>
+            <h2>The Ceremony</h2>
+            <p>Your vows, start to finish, shot and edited properly.</p>
+            <div class="actions">
+              <a class="btn ghost" id="c-view" target="_blank" rel="noopener">Open in Google Drive</a>
+              <a class="btn" id="c-dl" target="_blank" rel="noopener">Download <span class="meta">MP4 · 2.4 GB</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="reel">
+          <div class="frame" id="r-frame"><button type="button" class="poster" aria-label="Play Speeches and Dances">
+            <div class="slate">
+              <span class="reelno">Reel 02</span>
+              <span class="name">Speeches &amp; Dances</span>
+              <span class="play" aria-hidden="true"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M1 1l12 7-12 7z" fill="currentColor"/></svg></span>
+            </div>
+          </button></div>
+          <div class="body">
+            <span class="tag">Rough cut</span>
+            <h2>Speeches &amp; Dances</h2>
+            <p>The toasts and the dance floor. I didn't have a great angle or setup at the reception, so this one is rougher, but the moments are mostly all there.</p>
+            <div class="actions">
+              <a class="btn ghost" id="r-view" target="_blank" rel="noopener">Open in Google Drive</a>
+              <a class="btn" id="r-dl" target="_blank" rel="noopener">Download <span class="meta">MP4 · 1.7 GB</span></a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="help" aria-label="Help">
+        <div>
+          <h3>Watching</h3>
+          <p>Press play on either film. No Google account needed. If a video won't play here, use <strong>Open in Google Drive</strong>. If it looks soft at first, give it a few seconds to sharpen.</p>
+        </div>
+        <div>
+          <h3>Downloading</h3>
+          <p>These files are big, so Drive says it can't scan them for viruses. Click <strong>Download anyway</strong>. Use Wi-Fi.</p>
+        </div>
+        <div>
+          <h3>Keep a copy</h3>
+          <p>This page comes down on January 14, 2027. Before then, save both files somewhere safe, like a computer plus a cloud backup. They're full quality and play on any device.</p>
+        </div>
+      </section>
+
+      <footer>
+        <span>Congratulations, you two.</span>
+        <button class="linkbtn" id="lock" type="button">Lock this page</button>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  // Video links are encrypted with the password (PBKDF2 + AES-GCM), so they aren't readable in the page source.
+  var SEALED = {"salt":"omjZg1gqcXWgA+1qkJn17Q==","iv":"6CueMHGF1M5bO2C/","ct":"kqVNIyx+i5If28PwdT3UNNhc3wJlBMOTW2/amRt5i/D92h1/JaZKEG5/Evii/7BK8e0iJnmkYuzXOwx0y8GlNFIWpaM9coAh5crDsCTOhgnlRePzdKAjZs9lHW8OifP2Nfweu3eGvzJpPiJq7iNBICLtoq4IGUbV8HpgNQ/tFqZdJHCVlmvrnA0F72qel61mTTgNFyUjqxCIpATN0uurb4oVCkntcBjd1kSNxHnYZUzjLN289Vm57W3SkITEQWxkuusS5enmGJpR27aRZLp5QrCk9pAM7SpgHLlajdM9ILImWVT3um5Ca7KWjpbAcTqaB8APdIPv3eC0CUXOolML5XGhnZAoISJoMCopcUeFYEDVfSYacQ+iF7z4zdRo+3Bfj94w2P333xDGINKKYF1t/16lWsXiOZCwMjDqRuf3+gy5bvLvpohsfU8vmnjPaUJgczwKIjdAiD9XCk7Y9tqDD5HtOpdRgZB7fnc53nkiSvnfNYmNK/v27uQiOu0="};
+  var KEY = "kb-films-pw";
+  var gate = document.getElementById("gate"), films = document.getElementById("films");
+  var input = document.getElementById("pw"), err = document.getElementById("err"), btn = document.getElementById("unlock");
+
+  function b64(s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); }
+  function norm(s) { return s.toLowerCase().replace(/\s+/g, ""); }
+
+  async function open(pw) {
+    var c = window.crypto && window.crypto.subtle;
+    if (!c) throw new Error("nocrypto");
+    var base = await c.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+    var key = await c.deriveKey({ name: "PBKDF2", salt: b64(SEALED.salt), iterations: 150000, hash: "SHA-256" },
+      base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    var pt = await c.decrypt({ name: "AES-GCM", iv: b64(SEALED.iv) }, key, b64(SEALED.ct));
+    return JSON.parse(new TextDecoder().decode(pt));
+  }
+
+  // Load a Drive player only when someone presses play, so both 2 GB files aren't fetched at once.
+  var posters = {};
+  function arm(id, viewUrl) {
+    var frame = document.getElementById(id);
+    if (!posters[id]) posters[id] = frame.innerHTML;
+    frame.innerHTML = posters[id];
+    frame.querySelector(".poster").addEventListener("click", function () {
+      var f = document.createElement("iframe");
+      f.src = viewUrl.replace(/\/view$/, "/preview");
+      f.allow = "autoplay; fullscreen; encrypted-media";
+      f.allowFullscreen = true;
+      f.title = frame.querySelector(".name").textContent;
+      frame.appendChild(f);
+    });
+  }
+
+  function show(links) {
+    arm("c-frame", links.ceremony.view);
+    document.getElementById("c-view").href = links.ceremony.view;
+    document.getElementById("c-dl").href = links.ceremony.dl;
+    arm("r-frame", links.reception.view);
+    document.getElementById("r-view").href = links.reception.view;
+    document.getElementById("r-dl").href = links.reception.dl;
+    gate.hidden = true; films.hidden = false;
+  }
+
+  gate.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var pw = norm(input.value);
+    if (!pw) return;
+    err.textContent = ""; btn.disabled = true; btn.textContent = "Opening…";
+    try {
+      show(await open(pw));
+      try { localStorage.setItem(KEY, pw); } catch (_) {}
+    } catch (ex) {
+      err.textContent = ex && ex.message === "nocrypto"
+        ? "This browser can't open the page. Try Chrome, Safari, or Firefox."
+        : "That password didn't work. Check the spelling and try again.";
+      input.select();
+    } finally {
+      btn.disabled = false; btn.textContent = "Open";
+    }
+  });
+
+  document.getElementById("lock").addEventListener("click", function () {
+    try { localStorage.removeItem(KEY); } catch (_) {}
+    ["c-view","c-dl","r-view","r-dl"].forEach(function (id) { document.getElementById(id).removeAttribute("href"); });
+    ["c-frame","r-frame"].forEach(function (id) { if (posters[id]) document.getElementById(id).innerHTML = posters[id]; });
+    input.value = ""; films.hidden = true; gate.hidden = false; input.focus();
+  });
+
+  // Remember an unlocked visitor on this device.
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (_) {}
+  if (saved) open(saved).then(show).catch(function () { try { localStorage.removeItem(KEY); } catch (_) {} });
+})();
+</script>
+</body>
+</html>
