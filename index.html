@@ -20,6 +20,8 @@
   --brass-soft: #e6dcc8;
   --on-brass: #fbf8f1;
   --danger: #9a3b2f;
+  --screen: #0f1411;
+  --screen-fg: #e5e8e1;
   --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
   --body: "Karla", "Helvetica Neue", Arial, sans-serif;
   --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -91,39 +93,29 @@ h1 .amp { font-style: italic; color: var(--brass); font-size: 0.8em; padding-inl
 .btn .meta { font: 400 0.78rem/1 var(--mono); opacity: 0.8; }
 
 /* Reels */
-.reels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 32px); }
-@media (max-width: 720px) { .reels { grid-template-columns: 1fr; } }
+.reels { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(28px, 4vw, 44px); max-width: 860px; width: 100%; margin: 0 auto; }
 .reel {
   background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
   display: grid; grid-template-rows: auto 1fr; overflow: hidden; min-width: 0;
 }
 .frame {
-  position: relative; aspect-ratio: 16 / 9; max-width: 100%;
-  background: var(--ink); color: var(--bg);
-  display: grid; place-items: center; text-decoration: none; overflow: hidden;
+  position: relative; height: 0; padding-bottom: calc(56.25% + 64px); max-width: 100%;
+  background: var(--screen); color: var(--screen-fg); overflow: hidden;
 }
 /* sprocket holes along the top and bottom of each frame */
 .frame::before, .frame::after {
   content: ""; position: absolute; left: 0; right: 0; height: 10px;
-  background: radial-gradient(circle, var(--bg) 0 2.5px, transparent 3px) 0 50% / 18px 10px repeat-x;
+  background: radial-gradient(circle, var(--screen-fg) 0 2.5px, transparent 3px) 0 50% / 18px 10px repeat-x;
   opacity: 0.35;
 }
 .frame::before { top: 6px; } .frame::after { bottom: 6px; }
-.poster {
-  all: unset; box-sizing: border-box; position: absolute; inset: 0; cursor: pointer;
-  display: grid; place-items: center; color: inherit;
-}
-.poster:focus-visible { outline: 2px solid var(--brass); outline-offset: -4px; }
-.frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; z-index: 1; }
+.poster { position: absolute; inset: 0; display: grid; place-items: center; color: inherit; }
+.frame .loading { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; margin-top: 10px; }
+.frame .fallback { font-size: 0.85rem; opacity: 0.65; max-width: 34ch; margin-top: 4px; }
+.frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; z-index: 1; }
 .frame .slate { display: grid; gap: 6px; justify-items: center; text-align: center; padding: 0 16px; }
 .frame .reelno { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
 .frame .name { font-family: var(--display); font-style: italic; font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1.1; }
-.frame .play {
-  margin-top: 8px; width: 46px; height: 46px; border-radius: 50%;
-  border: 1px solid currentColor; display: grid; place-items: center; opacity: 0.85;
-  transition: transform .2s ease, opacity .2s ease;
-}
-.poster:hover .play, .poster:focus-visible .play { transform: scale(1.08); opacity: 1; }
 .body { padding: clamp(18px, 3vw, 26px); display: grid; gap: 14px; align-content: start; }
 .body h2 { font-family: var(--display); font-weight: 500; font-size: 1.5rem; margin: 0; line-height: 1.2; }
 .body p { margin: 0; color: var(--muted); max-width: 60ch; }
@@ -175,13 +167,14 @@ footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: gr
       <p class="notice">This page is up until <strong>January&nbsp;14,&nbsp;2027</strong>. Download both films to keep them.</p>
       <section class="reels" aria-label="Your films">
         <article class="reel">
-          <div class="frame" id="c-frame"><button type="button" class="poster" aria-label="Play The Ceremony">
+          <div class="frame" id="c-frame"><div class="poster">
             <div class="slate">
               <span class="reelno">Reel 01</span>
               <span class="name">The Ceremony</span>
-              <span class="play" aria-hidden="true"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M1 1l12 7-12 7z" fill="currentColor"/></svg></span>
+              <span class="loading">Loading video…</span>
+              <span class="fallback">Taking too long? Use Open in Google Drive or Download below.</span>
             </div>
-          </button></div>
+          </div></div>
           <div class="body">
             <span class="tag">Full edit</span>
             <h2>The Ceremony</h2>
@@ -194,13 +187,14 @@ footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: gr
         </article>
 
         <article class="reel">
-          <div class="frame" id="r-frame"><button type="button" class="poster" aria-label="Play Speeches and Dances">
+          <div class="frame" id="r-frame"><div class="poster">
             <div class="slate">
               <span class="reelno">Reel 02</span>
               <span class="name">Speeches &amp; Dances</span>
-              <span class="play" aria-hidden="true"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M1 1l12 7-12 7z" fill="currentColor"/></svg></span>
+              <span class="loading">Loading video…</span>
+              <span class="fallback">Taking too long? Use Open in Google Drive or Download below.</span>
             </div>
-          </button></div>
+          </div></div>
           <div class="body">
             <span class="tag">Rough cut</span>
             <h2>Speeches &amp; Dances</h2>
@@ -216,7 +210,7 @@ footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: gr
       <section class="help" aria-label="Help">
         <div>
           <h3>Watching</h3>
-          <p>Press play on either film. No Google account needed. If a video won't play here, use <strong>Open in Google Drive</strong>. If it looks soft at first, give it a few seconds to sharpen.</p>
+          <p>Press play on either film. No Google account needed. If a video won't load or play here, use <strong>Open in Google Drive</strong> or <strong>Download</strong>. If it looks soft at first, give it a few seconds to sharpen.</p>
         </div>
         <div>
           <h3>Downloading</h3>
@@ -257,20 +251,19 @@ footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: gr
     return JSON.parse(new TextDecoder().decode(pt));
   }
 
-  // Load a Drive player only when someone presses play, so both 2 GB files aren't fetched at once.
+  // Load both Drive players as soon as the page opens. Drive only fetches a thumbnail until someone presses play.
+  // The loading card sits behind each player and shows until Drive draws over it.
   var posters = {};
   function arm(id, viewUrl) {
     var frame = document.getElementById(id);
     if (!posters[id]) posters[id] = frame.innerHTML;
     frame.innerHTML = posters[id];
-    frame.querySelector(".poster").addEventListener("click", function () {
-      var f = document.createElement("iframe");
-      f.src = viewUrl.replace(/\/view$/, "/preview");
-      f.allow = "autoplay; fullscreen; encrypted-media";
-      f.allowFullscreen = true;
-      f.title = frame.querySelector(".name").textContent;
-      frame.appendChild(f);
-    });
+    var f = document.createElement("iframe");
+    f.src = viewUrl.replace(/\/view$/, "/preview");
+    f.allow = "autoplay; fullscreen; encrypted-media";
+    f.allowFullscreen = true;
+    f.title = frame.querySelector(".name").textContent;
+    frame.appendChild(f);
   }
 
   function show(links) {
