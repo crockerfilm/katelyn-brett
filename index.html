@@ -50,18 +50,18 @@ body {
   line-height: 1.6;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: clamp(40px, 8vw, 88px);
+  padding-block: clamp(24px, 4vw, 44px);
 }
-.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: clamp(40px, 6vw, 64px); }
+.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: clamp(24px, 3.5vw, 36px); }
 
 .eyebrow {
   font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--muted);
 }
-header { display: grid; gap: 14px; justify-items: center; text-align: center; }
+header { display: grid; gap: 8px; justify-items: center; text-align: center; }
 h1 {
   font-family: var(--display); font-weight: 400; margin: 0;
-  font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.02; letter-spacing: -0.01em;
+  font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.02; letter-spacing: -0.01em;
   text-wrap: balance;
 }
 h1 .amp { font-style: italic; color: var(--brass); font-size: 0.8em; padding-inline: 0.08em; }
@@ -135,7 +135,7 @@ h1 .amp { font-style: italic; color: var(--brass); font-size: 0.8em; padding-inl
 .help h3 { font-family: var(--mono); font-weight: 500; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 6px; color: var(--brass); }
 .help p { margin: 0; color: var(--muted); font-size: 0.92rem; }
 footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: grid; gap: 10px; justify-items: center; }
-.notice { margin: 0 0 calc(-1 * clamp(16px, 3vw, 32px)); text-align: center; color: var(--muted); font-size: 0.95rem; }
+.notice { margin: 0 0 calc(-1 * clamp(12px, 2vw, 24px)); text-align: center; color: var(--muted); font-size: 0.95rem; }
 .notice strong { color: var(--ink); font-weight: 600; }
 .linkbtn { background: none; border: 0; color: var(--muted); font: inherit; font-size: 0.82rem; text-decoration: underline; cursor: pointer; padding: 4px; }
 .linkbtn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
@@ -147,7 +147,7 @@ footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: gr
 
 <div class="wrap">
   <header>
-    <span class="eyebrow">Wedding films · October 2026</span>
+    <span class="eyebrow">Durham, NH · October 2026</span>
     <h1>Katelyn <span class="amp">&amp;</span> Brett</h1>
     <hr class="rule">
   </header>
@@ -163,7 +163,7 @@ footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: gr
   </form>
 
   <main id="films" hidden>
-    <div style="display:grid; gap: clamp(40px, 6vw, 64px);">
+    <div style="display:grid; gap: clamp(28px, 4vw, 44px);">
       <p class="notice">This page is up until <strong>January&nbsp;14,&nbsp;2027</strong>. Download both films to keep them.</p>
       <section class="reels" aria-label="Your films">
         <article class="reel">
@@ -233,7 +233,7 @@ footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: gr
 <script>
 (function () {
   // Video links are encrypted with the password (PBKDF2 + AES-GCM), so they aren't readable in the page source.
-  var SEALED = {"salt":"omjZg1gqcXWgA+1qkJn17Q==","iv":"6CueMHGF1M5bO2C/","ct":"kqVNIyx+i5If28PwdT3UNNhc3wJlBMOTW2/amRt5i/D92h1/JaZKEG5/Evii/7BK8e0iJnmkYuzXOwx0y8GlNFIWpaM9coAh5crDsCTOhgnlRePzdKAjZs9lHW8OifP2Nfweu3eGvzJpPiJq7iNBICLtoq4IGUbV8HpgNQ/tFqZdJHCVlmvrnA0F72qel61mTTgNFyUjqxCIpATN0uurb4oVCkntcBjd1kSNxHnYZUzjLN289Vm57W3SkITEQWxkuusS5enmGJpR27aRZLp5QrCk9pAM7SpgHLlajdM9ILImWVT3um5Ca7KWjpbAcTqaB8APdIPv3eC0CUXOolML5XGhnZAoISJoMCopcUeFYEDVfSYacQ+iF7z4zdRo+3Bfj94w2P333xDGINKKYF1t/16lWsXiOZCwMjDqRuf3+gy5bvLvpohsfU8vmnjPaUJgczwKIjdAiD9XCk7Y9tqDD5HtOpdRgZB7fnc53nkiSvnfNYmNK/v27uQiOu0="};
+  var SEALED = {"salt":"hoZY6OxVDPRXQ9N9HQlJWQ==","iv":"nWUNiovjJ5uSYhKe","ct":"mjnesKYg0Lw4/JQX0VKj82Qdg3SIaDjUtKvi2K/WhkW/t3bQNXziiQtyuS4uLWpTVuuI9tQoeG5Y3qUm2iglwoDEaiw/vP+ReVEXrQWKuJFT73AdiCxcZF5RJZzHl7amI9ez3Ep1uYQEJgCqjGnzEeZk50LtGRB+5k9A4vYGukwDEUL6NX+IcKCXiuKVqY2DfELMWABUkyWyqpJfYIcJ0XfMaCuVTcN/5hKleL8Zvm6cI8ucdpBHq5VwwfgJEI+rUyZFnDS0k9P6+MhLIo9PAD8K8lhYFJ7VdQKsQolqEoiyt+IpeLlc9G/pyKczd/VnlrUz7e9HVl7JnIta9I6qJdnukg25yqtjwWSDxFwfnUAP3qIMHw1VbusTfGILrL+lG765HDPpIU0fayakorkcG/FNTXcFHnR81rVNJDauBdZMK4JGkamp5AwCfx7ivJhThpZezaWIsQD5uIrRtROKas0jC/4PPoysloRk3dbhUjZDXTWo4Ll5dAo3EOk="};
   var KEY = "kb-films-pw";
   var gate = document.getElementById("gate"), films = document.getElementById("films");
   var input = document.getElementById("pw"), err = document.getElementById("err"), btn = document.getElementById("unlock");
