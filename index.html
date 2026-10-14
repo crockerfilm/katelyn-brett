@@ -125,6 +125,7 @@ h1 .amp { font-style: italic; color: var(--brass); font-size: 0.8em; padding-inl
   background: var(--brass-soft); color: var(--ink);
 }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+@media (max-width: 480px) { .actions .btn { flex: 1 1 100%; } }
 .specs { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 .help {
@@ -137,7 +138,7 @@ h1 .amp { font-style: italic; color: var(--brass); font-size: 0.8em; padding-inl
 footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: grid; gap: 10px; justify-items: center; }
 .notice { margin: 0 0 calc(-1 * clamp(12px, 2vw, 24px)); text-align: center; color: var(--muted); font-size: 0.95rem; }
 .notice strong { color: var(--ink); font-weight: 600; }
-.linkbtn { background: none; border: 0; color: var(--muted); font: inherit; font-size: 0.82rem; text-decoration: underline; cursor: pointer; padding: 4px; }
+.linkbtn { background: none; border: 0; color: var(--muted); font: inherit; font-size: 0.82rem; text-decoration: underline; cursor: pointer; padding: 12px 16px; min-height: 44px; }
 .linkbtn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -214,7 +215,7 @@ footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: gr
         </div>
         <div>
           <h3>Downloading</h3>
-          <p>These files are big, so Drive says it can't scan them for viruses. Click <strong>Download anyway</strong>. Use Wi-Fi.</p>
+          <p>These files are big, so Drive says it can't scan them for viruses. Click <strong>Download anyway</strong>. Use Wi-Fi. On iPhone, finished downloads are in the Files app under Downloads.</p>
         </div>
         <div>
           <h3>Keep a copy</h3>
