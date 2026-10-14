@@ -233,7 +233,7 @@ footer { text-align: center; color: var(--muted); font-size: 0.9rem; display: gr
 <script>
 (function () {
   // Video links are encrypted with the password (PBKDF2 + AES-GCM), so they aren't readable in the page source.
-  var SEALED = {"salt":"hoZY6OxVDPRXQ9N9HQlJWQ==","iv":"nWUNiovjJ5uSYhKe","ct":"mjnesKYg0Lw4/JQX0VKj82Qdg3SIaDjUtKvi2K/WhkW/t3bQNXziiQtyuS4uLWpTVuuI9tQoeG5Y3qUm2iglwoDEaiw/vP+ReVEXrQWKuJFT73AdiCxcZF5RJZzHl7amI9ez3Ep1uYQEJgCqjGnzEeZk50LtGRB+5k9A4vYGukwDEUL6NX+IcKCXiuKVqY2DfELMWABUkyWyqpJfYIcJ0XfMaCuVTcN/5hKleL8Zvm6cI8ucdpBHq5VwwfgJEI+rUyZFnDS0k9P6+MhLIo9PAD8K8lhYFJ7VdQKsQolqEoiyt+IpeLlc9G/pyKczd/VnlrUz7e9HVl7JnIta9I6qJdnukg25yqtjwWSDxFwfnUAP3qIMHw1VbusTfGILrL+lG765HDPpIU0fayakorkcG/FNTXcFHnR81rVNJDauBdZMK4JGkamp5AwCfx7ivJhThpZezaWIsQD5uIrRtROKas0jC/4PPoysloRk3dbhUjZDXTWo4Ll5dAo3EOk="};
+  var SEALED = {"salt":"T6av7lLViLxLQZh4on/pTw==","iv":"DljcZwtl2ju1NcmU","ct":"k22kHSv0VPXswkVljKnTYEGCqZtv9aBL81Vu7nwNj4TQNuzyljULW+D++8RK4w162cq+ERht+ZNVnDA9Ewy3Mr5Xdq6hwoIkeeCdxySD33HgSRYlDO7oc3hsqhix+X7WvwKhsMDY1Baipx6PKBov78qxwce7pTZmNxHpaah5seK0efstg1SwR5Phg7FyikDhevqF/yAmdTBXjoPFFJtQrXc9qvYy+Fxa+vmRbAz761NOF3bvNYB2mrIRMFYQUuVopNqGavOJPRPTdB7YBi4m4B16LnTOz3QWZFXWozb4Zs1j6jncr0QdkZePajQcgI5ghz2+EbCQl9VXF0KFmmLx30FFq0YFyfwaZQ68qAmWkvuWyTJSNOILYSwBUL0hhy6bSUJe8e4SoWdg3G7mVVEwG6hNzVMqfriZwzfw9X8WRmrZ0NscPPULPAqjEtRwF+0SfjWASi02MJDy1psd9Cq4T/yJ+9R6ji0sGJqDQjd+ddNtAPpYBAVWHU4DInQ="};
   var KEY = "kb-films-pw";
   var gate = document.getElementById("gate"), films = document.getElementById("films");
   var input = document.getElementById("pw"), err = document.getElementById("err"), btn = document.getElementById("unlock");
